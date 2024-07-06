@@ -512,6 +512,7 @@ class XyPopover extends HTMLElement {
     }
 
     show(ev) {
+        ev.stopPropagation();
         this.popcon = this.querySelector('xy-popcon');
         if (!this.disabled) {
             if (!this.popcon) {
@@ -536,7 +537,8 @@ class XyPopover extends HTMLElement {
                 this.popcon.open = true;
             } else {
                 const path = ev.path || (ev.composedPath && ev.composedPath());
-                if (!path.includes(this.popcon)) {
+                console.log('before', this.popcon.open);
+                if (!path.includes(this.popcon) || true) {
                     window.xyActiveElement = document.activeElement;
                     if (this.accomplish) {
                         this.popcon.open = true;
@@ -544,6 +546,7 @@ class XyPopover extends HTMLElement {
                         this.popcon.open = !this.popcon.open;
                     }
                 }
+                console.log(this.popcon.open);
             }
         } else {
             (this.popcon||this).dispatchEvent(new CustomEvent('submit'));

@@ -1,11 +1,12 @@
 {
-  "name": "editorjs-text-color-plugin",
+  "name": "editorjslib-text-color-plugin",
   "version": "2.0.3",
   "description": "Text Color Tool for Editor.js",
-  "main": "./dist/bundle.js",
+  "main": "./dist/bundle.umd.js",
+  "module": "./dist/bundle.mjs",
   "scripts": {
-    "build": "webpack --mode=production",
-    "build:dev": "webpack --mode=development --watch"
+    "dev": "vite build --watch",
+    "build": "vite build"
   },
   "repository": {
     "type": "git",
@@ -23,12 +24,8 @@
   },
   "homepage": "https://github.com/flaming-cl/editorjs-text-color-plugin#readme",
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
-    "babel-loader": "^8.1.0",
-    "css-loader": "^3.5.3",
-    "raw-loader": "^4.0.1",
-    "style-loader": "^1.2.1",
-    "webpack-cli": "^5.0.1"
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "vite": "^5.3.3",
+    "vite-plugin-css-injected-by-js": "^3.5.1"
   }
 }

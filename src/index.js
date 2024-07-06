@@ -105,8 +105,13 @@ class Color {
   createRightButton(sharedScope) {
     if (!this.picker) {
       this.picker = new Picker.ColorPlugin({
-        onColorPicked: function (value) {
+        onColorPicked: (value) => {
           sharedScope.color = value;
+          const sel = document.getSelection();
+          if (sel) {
+            const range = sel.getRangeAt(0);
+            this.wrap(range);
+          }
         },
         hasCustomPicker: this.hasCustomPicker,
         defaultColor: this.config.defaultColor,
@@ -149,11 +154,45 @@ class Color {
   }
 
   /**
+   * 
+   * @param {Range} range 
+   */
+  unwrapTagInRange(range, tag) {
+    tag = tag.toUpperCase();
+    const startContainer = range.startContainer;
+    const endContainer = range.endContainer;
+
+    if (startContainer.nodeType === Node.TEXT_NODE && startContainer.parentNode.tagName === tag) {
+        range.setStartBefore(startContainer.parentNode);
+    }
+    if (endContainer.nodeType === Node.TEXT_NODE && endContainer.parentNode.tagName === tag) {
+        range.setEndAfter(endContainer.parentNode);
+    }
+
+    const contents = range.extractContents();
+    const children = contents.querySelectorAll(tag);
+
+    const unwrap = (node) => {
+      while (node.firstChild) {
+          node.parentNode.insertBefore(node.firstChild, node);
+      }
+      node.parentNode.removeChild(node);
+    }
+
+    children.forEach(child => unwrap(child));
+
+    range.deleteContents();
+    range.insertNode(contents);
+}
+
+  /**
    * Wrap selected fragment
    *
    * @param {Range} range - selected fragment
    */
   wrap(range) {
+    this.unwrapTagInRange(range, this.parentTag); // Avoid nested tags
+
     const selectedText = range.extractContents();
     const newWrapper = document.createElement(this.parentTag);
 

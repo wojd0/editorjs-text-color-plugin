@@ -74,9 +74,9 @@ class ColorPlugin extends HTMLElement {
         }
         xy-popover{
             display:block;
+            position: static;
         }
         xy-popcon{
-            position: fixed;
             min-width:100%;
         }
         #custom-picker {

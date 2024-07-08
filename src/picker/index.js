@@ -158,7 +158,7 @@ class ColorPlugin extends HTMLElement {
                 <xy-popcon id="popcon">
                     <div class="color-sign" id="colors">
                         ${this.hasCustomPicker && (`<button id="custom-picker" class="rainbow-mask"/>`) || ''}
-                        ${this.colorCollections.map(el => '<button class="color-cube" style="background-color:' + el + '" data-color=' + el + '></button>').join('')}
+                        ${this.colorCollections.map(el => '<button class="color-cube" style="background-color:' + el + '" data-color="' + el + '"></button>').join('')}
                     </div>
                 </xy-popcon>
             </xy-popover>

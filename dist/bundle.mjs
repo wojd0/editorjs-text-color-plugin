@@ -922,7 +922,7 @@ class x extends HTMLElement {
                 <xy-popcon id="popcon">
                     <div class="color-sign" id="colors">
                         ${this.hasCustomPicker && '<button id="custom-picker" class="rainbow-mask"/>' || ""}
-                        ${this.colorCollections.map((o) => '<button class="color-cube" style="background-color:' + o + '" data-color=' + o + "></button>").join("")}
+                        ${this.colorCollections.map((o) => '<button class="color-cube" style="background-color:' + o + '" data-color="' + o + '"></button>').join("")}
                     </div>
                 </xy-popcon>
             </xy-popover>

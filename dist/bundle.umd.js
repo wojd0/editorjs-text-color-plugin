@@ -496,7 +496,7 @@
         }
         xy-popover{
             display:block;
-            position: static;
+            position: fixed;
         }
         xy-popcon{
             min-width:100%;

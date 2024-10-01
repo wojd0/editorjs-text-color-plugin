@@ -14,7 +14,7 @@ class ColorPlugin extends HTMLElement {
 
     static get observedAttributes() { return ['disabled','dir'] }
 
-    constructor(options) {
+    constructor(options = {}) {
         super();
         const shadowRoot = this.attachShadow({ mode: 'open' });
         this.colorCollections = options.colorCollections || ColorCollections;

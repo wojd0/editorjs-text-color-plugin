@@ -785,7 +785,7 @@ class x extends HTMLElement {
   static get observedAttributes() {
     return ["disabled", "dir"];
   }
-  constructor(t) {
+  constructor(t = {}) {
     super();
     const e = this.attachShadow({ mode: "open" });
     this.colorCollections = t.colorCollections || B, this.onColorPicked = t.onColorPicked, this.defaulColor = l(t.defaultColor || this.colorCollections[0]), this.pluginType = t.type, this.hasCustomPicker = t.hasCustomPicker, this.customColor = f(this.pluginType), e.innerHTML = `

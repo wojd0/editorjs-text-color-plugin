@@ -9,10 +9,10 @@ import {
     CONVERTER_BTN,
     CONVERTER_PANEL,
 } from './utils/main';
-const ColorCollections = ['#ff1300','#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39','#FFE500','#FFBF00','#FF9800','#795548','#9E9E9E','#5A5A5A','#FFF'];
+const ColorCollections = ['#ff1300', '#EC7878', '#9C27B0', '#673AB7', '#3F51B5', '#0070FF', '#03A9F4', '#00BCD4', '#4CAF50', '#8BC34A', '#CDDC39', '#FFE500', '#FFBF00', '#FF9800', '#795548', '#9E9E9E', '#5A5A5A', '#FFF'];
 class ColorPlugin extends HTMLElement {
 
-    static get observedAttributes() { return ['disabled','dir'] }
+    static get observedAttributes() { return ['disabled', 'dir'] }
 
     constructor(options = {}) {
         super();
@@ -74,7 +74,7 @@ class ColorPlugin extends HTMLElement {
         }
         xy-popover{
             display:block;
-            position: fixed;
+            position: static;
         }
         xy-popcon{
             min-width:100%;
@@ -174,7 +174,7 @@ class ColorPlugin extends HTMLElement {
         this.popcon = this.shadowRoot.getElementById('popcon');
         this.colorBtn = this.shadowRoot.getElementById('color-btn');
         this.colors = this.shadowRoot.getElementById('colors');
-        this.colors.addEventListener('click',(ev) => {
+        this.colors.addEventListener('click', (ev) => {
             const item = ev.target.closest('button');
             if (item && item.id !== 'custom-picker') {
                 this.nativeclick = true;
@@ -266,7 +266,7 @@ class ColorPlugin extends HTMLElement {
         return this.getAttribute('dir');
     }
 
-    set dir(value){
+    set dir(value) {
         this.setAttribute('dir', value);
     }
 
@@ -278,7 +278,7 @@ class ColorPlugin extends HTMLElement {
         }
     }
 
-    set defaultvalue(value){
+    set defaultvalue(value) {
         this.setAttribute('defaultvalue', value);
     }
 

@@ -1,4 +1,4 @@
-(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".picker_wrapper.popup{z-index:99;width:170px;margin:0;box-shadow:0 0 10px 1px #eaeaea;background:#fff}.picker_arrow{display:none}.layout_default .picker_slider,.layout_default .picker_selector{padding:5px}.colorPlugin.ce-inline-tool{width:32px;border-radius:3px}.colorPlugin.ce-inline-tool--active svg{fill:#3c99ff}#color-left-btn{height:35px;width:18px;font-weight:600;display:flex;align-items:center}#color-left-btn:hover{border-radius:5px 0 0 5px;background:#cbcbcb7d}#color-text{padding:0 4px}#color-btn-text{height:15px}")),document.head.appendChild(e)}}catch(t){console.error("vite-plugin-css-injected-by-js",t)}})();
+(function(){"use strict";try{if(typeof document<"u"){var e=document.createElement("style");e.appendChild(document.createTextNode(".picker_wrapper.popup{z-index:99;width:170px;margin:0;box-shadow:0 0 10px 1px #eaeaea;background:#fff}.picker_arrow{display:none}.layout_default .picker_slider,.layout_default .picker_selector{padding:5px}.colorPlugin.ce-inline-tool{width:32px;border-radius:3px}.colorPlugin.ce-inline-tool--active svg{fill:#3c99ff}#color-left-btn{height:35px;width:18px;font-weight:600;display:flex;align-items:center}#color-left-btn:hover{border-radius:5px 0 0 5px;background:#cbcbcb7d}#color-text{padding:0 4px}#color-btn-text{height:15px}.ce-popover__container{overflow:visible}.ce-popover--inline .ce-popover__items{overflow:hidden}")),document.head.appendChild(e)}}catch(o){console.error("vite-plugin-css-injected-by-js",o)}})();
 function C(i) {
   return i && i.__esModule && Object.prototype.hasOwnProperty.call(i, "default") ? i.default : i;
 }
@@ -708,10 +708,8 @@ class A extends HTMLElement {
     else if (this.popcon || (this.popcon = new d(this.type), this.popcon.type = this.type, this.appendChild(this.popcon), this.popcon.title = this.title || "popover", this.popcon.innerHTML = this.content || "", this.type == "confirm" && (this.popcon.oktext = this.oktext || "confirm", this.popcon.canceltext = this.canceltext || "cancel", this.popcon.onsubmit = () => this.dispatchEvent(new CustomEvent("submit")), this.popcon.oncancel = () => this.dispatchEvent(new CustomEvent("cancel")))), this.trigger === "contextmenu") {
       const { x: e, y: o } = this.getBoundingClientRect();
       this.popcon.style.setProperty("--x", t.clientX - e + "px"), this.popcon.style.setProperty("--y", t.clientY - o + "px"), this.popcon.open = !0;
-    } else {
-      const e = t.path || t.composedPath && t.composedPath();
-      console.log("before", this.popcon.open), e.includes(this.popcon), window.xyActiveElement = document.activeElement, this.accomplish ? this.popcon.open = !0 : this.popcon.open = !this.popcon.open, console.log(this.popcon.open);
-    }
+    } else
+      (t.path || t.composedPath && t.composedPath()).includes(this.popcon), window.xyActiveElement = document.activeElement, this.accomplish ? this.popcon.open = !0 : this.popcon.open = !this.popcon.open;
     return this.popcon;
   }
   connectedCallback() {
@@ -838,7 +836,7 @@ class x extends HTMLElement {
         }
         xy-popover{
             display:block;
-            position: fixed;
+            position: static;
         }
         xy-popcon{
             min-width:100%;

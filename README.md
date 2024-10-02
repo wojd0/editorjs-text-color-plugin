@@ -13,7 +13,15 @@ A simple tool [Demo](https://flaming-cl.github.io/editorPlugin) to color text-fr
 Get the package
 
 ```shell
-npm install https://github.com/dariox64/editorjs-text-color-plugin.git
+
+package.json
+
+"dependencies": {
+...
+"editorjs-text-color-plugin": "git+https://github.com/dariox64/editorjs-text-color-plugin.git",
+...
+}
+
 ```
 
 Import the plugin

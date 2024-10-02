@@ -2,7 +2,7 @@ import './xy-button.js';
 
 class XyPopcon extends HTMLElement {
 
-    static get observedAttributes() { return ['open','title','oktext','canceltext','loading','type'] }
+    static get observedAttributes() { return ['open', 'title', 'oktext', 'canceltext', 'loading', 'type'] }
 
     constructor(type) {
         super();
@@ -85,33 +85,30 @@ class XyPopcon extends HTMLElement {
             padding: 0;
         }
         </style>
-            ${
-                (type||this.type)==='confirm'?'<xy-icon id="popcon-type" class="popcon-type" name="question-circle" color="var(--waringColor,#faad14)"></xy-icon>':''
+            ${(type || this.type) === 'confirm' ? '<xy-icon id="popcon-type" class="popcon-type" name="question-circle" color="var(--waringColor,#faad14)"></xy-icon>' : ''
             }
             <div class="popcon-content">
-                ${
-                    (type||this.type)!==null?'<div class="popcon-title" id="title">'+this.title+'</div><xy-button class="btn-close" id="btn-close" icon="close"></xy-button>':''
-                }
+                ${(type || this.type) !== null ? '<div class="popcon-title" id="title">' + this.title + '</div><xy-button class="btn-close" id="btn-close" icon="close"></xy-button>' : ''
+            }
                 <div class="popcon-body">
                     <slot></slot>
                 </div>
-                ${
-                    (type||this.type)==='confirm'?'<div class="popcon-footer"><xy-button id="btn-cancel">'+this.canceltext+'</xy-button><xy-button id="btn-submit" type="primary">'+this.oktext+'</xy-button></div>':''
-                }
+                ${(type || this.type) === 'confirm' ? '<div class="popcon-footer"><xy-button id="btn-cancel">' + this.canceltext + '</xy-button><xy-button id="btn-submit" type="primary">' + this.oktext + '</xy-button></div>' : ''
+            }
             </div>
         `
     }
 
     get open() {
-        return this.getAttribute('open')!==null;
+        return this.getAttribute('open') !== null;
     }
 
     get stopfocus() {
-        return this.getAttribute('stopfocus')!==null;
+        return this.getAttribute('stopfocus') !== null;
     }
 
     get title() {
-        return this.getAttribute('title') ||'popcon';
+        return this.getAttribute('title') || 'popcon';
     }
 
     get type() {
@@ -123,7 +120,7 @@ class XyPopcon extends HTMLElement {
     }
 
     get canceltext() {
-        return this.getAttribute('canceltext')||'cancel';
+        return this.getAttribute('canceltext') || 'cancel';
     }
 
     get loading() {
@@ -135,7 +132,7 @@ class XyPopcon extends HTMLElement {
     }
 
     set type(value) {
-        if (value===null || value===false) {
+        if (value === null || value === false) {
             this.removeAttribute('type');
         } else {
             this.setAttribute('type', value);
@@ -151,18 +148,18 @@ class XyPopcon extends HTMLElement {
     }
 
     set open(value) {
-        if (value===null || value===false) {
+        if (value === null || value === false) {
             this.removeAttribute('open');
             this.parentNode.removeAttribute('open');
         } else {
             this.setAttribute('open', '');
-            this.parentNode.setAttribute('open','');
+            this.parentNode.setAttribute('open', '');
             this.loading && (this.loading = false);
         }
     }
 
     set loading(value) {
-        if (value===null || value===false) {
+        if (value === null || value === false) {
             this.removeAttribute('loading');
         } else {
             this.setAttribute('loading', '');
@@ -175,48 +172,48 @@ class XyPopcon extends HTMLElement {
             this.titles = this.shadowRoot.getElementById('title');
             this.btnClose = this.shadowRoot.getElementById('btn-close');
         }
-        if (this.type=='confirm') {
+        if (this.type == 'confirm') {
             this.btnCancel = this.shadowRoot.getElementById('btn-cancel');
             this.btnSubmit = this.shadowRoot.getElementById('btn-submit');
         }
-        this.addEventListener('transitionend',(ev)=>{
+        this.addEventListener('transitionend', (ev) => {
             if (ev.propertyName === 'transform' && this.open) {
-                if (this.type=='confirm') {
+                if (this.type == 'confirm') {
                     this.btnSubmit.focus();
                 }
-                if (this.type=='pane') {
+                if (this.type == 'pane') {
                     this.btnClose.focus();
                 }
                 this.dispatchEvent(new CustomEvent('open'));
             }
         })
-        this.addEventListener('transitionend',(ev)=>{
+        this.addEventListener('transitionend', (ev) => {
             if (ev.propertyName === 'transform' && !this.open) {
-                if (this.remove){
+                if (this.remove) {
                     this.parentNode.removeChild(this);
                 }
                 this.dispatchEvent(new CustomEvent('close'));
             }
         })
-        this.addEventListener('click',(ev)=>{
+        this.addEventListener('click', (ev) => {
             if (ev.target.closest('[autoclose]')) {
                 this.open = false;
                 window.xyActiveElement.focus();
             }
         })
-        if (this.type){
-            this.btnClose.addEventListener('click',()=>{
+        if (this.type) {
+            this.btnClose.addEventListener('click', () => {
                 this.open = false;
                 window.xyActiveElement.focus();
             })
         }
-        if (this.type=='confirm') {
-            this.btnCancel.addEventListener('click',async ()=>{
+        if (this.type == 'confirm') {
+            this.btnCancel.addEventListener('click', async () => {
                 this.dispatchEvent(new CustomEvent('cancel'));
                 this.open = false;
                 window.xyActiveElement.focus();
             })
-            this.btnSubmit.addEventListener('click',()=>{
+            this.btnSubmit.addEventListener('click', () => {
                 this.dispatchEvent(new CustomEvent('submit'));
                 if (!this.loading) {
                     this.open = false;
@@ -226,31 +223,31 @@ class XyPopcon extends HTMLElement {
         }
     }
 
-    attributeChangedCallback (name, oldValue, newValue) {
+    attributeChangedCallback(name, oldValue, newValue) {
         if (name == 'open' && this.shadowRoot) {
-            if (newValue==null && !this.stopfocus) {
+            if (newValue == null && !this.stopfocus) {
                 //window.xyActiveElement.focus();
             }
         }
         if (name == 'loading' && this.shadowRoot) {
-            if (newValue!==null) {
+            if (newValue !== null) {
                 this.btnSubmit.loading = true;
             } else {
                 this.btnSubmit.loading = false;
             }
         }
         if (name == 'title' && this.titles) {
-            if (newValue!==null) {
+            if (newValue !== null) {
                 this.titles.innerHTML = newValue;
             }
         }
         if (name == 'oktext' && this.btnSubmit) {
-            if (newValue!==null) {
+            if (newValue !== null) {
                 this.btnSubmit.innerHTML = newValue;
             }
         }
         if (name == 'canceltext' && this.btnCancel) {
-            if(newValue!==null){
+            if (newValue !== null) {
                 this.btnCancel.innerHTML = newValue;
             }
         }
@@ -262,7 +259,7 @@ if (!customElements.get('xy-popcon')) {
 }
 
 class XyPopover extends HTMLElement {
-    static get observedAttributes() { return ['title','oktext','canceltext','loading','type'] }
+    static get observedAttributes() { return ['title', 'oktext', 'canceltext', 'loading', 'type'] }
     constructor() {
         super();
         const shadowRoot = this.attachShadow({ mode: 'open' });
@@ -496,7 +493,7 @@ class XyPopover extends HTMLElement {
     }
 
     set loading(value) {
-        if (value===null || value===false) {
+        if (value === null || value === false) {
             this.removeAttribute('loading');
         } else {
             this.setAttribute('loading', '');
@@ -524,20 +521,20 @@ class XyPopover extends HTMLElement {
                 if (this.type == 'confirm') {
                     this.popcon.oktext = this.oktext || 'confirm';
                     this.popcon.canceltext = this.canceltext || 'cancel';
-                    this.popcon.onsubmit = ()=>this.dispatchEvent(new CustomEvent('submit'));
-                    this.popcon.oncancel = ()=>this.dispatchEvent(new CustomEvent('cancel'));
+                    this.popcon.onsubmit = () => this.dispatchEvent(new CustomEvent('submit'));
+                    this.popcon.oncancel = () => this.dispatchEvent(new CustomEvent('cancel'));
                 }
             }
             //this.popcon.remove = true;
             // this.popcon.clientWidth;
-            if (this.trigger==='contextmenu') {
-                const {x,y} = this.getBoundingClientRect()
-                this.popcon.style.setProperty('--x',ev.clientX-x+'px');
-                this.popcon.style.setProperty('--y',ev.clientY-y+'px');
+            if (this.trigger === 'contextmenu') {
+                const { x, y } = this.getBoundingClientRect()
+                this.popcon.style.setProperty('--x', ev.clientX - x + 'px');
+                this.popcon.style.setProperty('--y', ev.clientY - y + 'px');
                 this.popcon.open = true;
             } else {
                 const path = ev.path || (ev.composedPath && ev.composedPath());
-                console.log('before', this.popcon.open);
+                //console.log('before', this.popcon.open);
                 if (!path.includes(this.popcon) || true) {
                     window.xyActiveElement = document.activeElement;
                     if (this.accomplish) {
@@ -546,20 +543,20 @@ class XyPopover extends HTMLElement {
                         this.popcon.open = !this.popcon.open;
                     }
                 }
-                console.log(this.popcon.open);
+                //console.log(this.popcon.open);
             }
         } else {
-            (this.popcon||this).dispatchEvent(new CustomEvent('submit'));
+            (this.popcon || this).dispatchEvent(new CustomEvent('submit'));
         }
         return this.popcon;
     }
     connectedCallback() {
         this.popcon = this.querySelector('xy-popcon');
-        if (!(this.trigger&&this.trigger !== 'click')) {
-            this.addEventListener('click',this.show);
+        if (!(this.trigger && this.trigger !== 'click')) {
+            this.addEventListener('click', this.show);
         }
         if (this.trigger === 'contextmenu') {
-            this.addEventListener('contextmenu',(ev)=>{
+            this.addEventListener('contextmenu', (ev) => {
                 ev.preventDefault();
                 const path = ev.path || (ev.composedPath && ev.composedPath());
                 if (!path.includes(this.popcon)) {
@@ -567,40 +564,40 @@ class XyPopover extends HTMLElement {
                 }
             });
         }
-        document.addEventListener('mousedown',(ev)=>{
+        document.addEventListener('mousedown', (ev) => {
             const path = ev.path || (ev.composedPath && ev.composedPath());
-            if (this.popcon && !path.includes(this.popcon) && !this.popcon.loading && !path.includes(this.children[0]) || (this.trigger==='contextmenu') && !path.includes(this.popcon) && ev.which == '1'){
+            if (this.popcon && !path.includes(this.popcon) && !this.popcon.loading && !path.includes(this.children[0]) || (this.trigger === 'contextmenu') && !path.includes(this.popcon) && ev.which == '1') {
                 this.popcon.open = false;
             }
         })
     }
 
-    attributeChangedCallback (name, oldValue, newValue) {
+    attributeChangedCallback(name, oldValue, newValue) {
         if (name == 'loading' && this.popcon) {
-            if(newValue!==null){
+            if (newValue !== null) {
                 this.popcon.loading = true;
-            }else{
+            } else {
                 this.popcon.loading = false;
             }
         }
         if (name == 'title' && this.popcon) {
-            if(newValue!==null){
+            if (newValue !== null) {
                 this.popcon.title = newValue;
             }
         }
         if (name == 'oktext' && this.popcon) {
-            if(newValue!==null){
+            if (newValue !== null) {
                 this.popcon.oktext = newValue;
             }
         }
         if (name == 'canceltext' && this.popcon) {
-            if(newValue!==null){
+            if (newValue !== null) {
                 this.popcon.canceltext = newValue;
             }
         }
     }
 }
 
-if(!customElements.get('xy-popover')){
+if (!customElements.get('xy-popover')) {
     customElements.define('xy-popover', XyPopover);
 }

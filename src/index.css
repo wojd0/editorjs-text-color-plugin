@@ -44,3 +44,10 @@
   height: 15px;
 }
 
+.ce-popover__container {
+  overflow: visible;
+}
+
+.ce-popover--inline .ce-popover__items {
+   overflow: hidden;
+}

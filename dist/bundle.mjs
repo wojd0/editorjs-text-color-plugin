@@ -1034,7 +1034,7 @@ class q {
    * @param {{api: object}}  - Editor.js API
    */
   constructor({ config: t, api: e }) {
-    console.log("loaded @wojd0/editorjs-text-color-plugin"), this.api = e, this.config = t, this.clickedOnLeft = !1, this.pluginType = this.config.type || "text", this.parentTag = this.pluginType === "marker" ? "MARK" : "FONT", this.hasCustomPicker = this.config.customPicker || !1, this.color = X(
+    this.api = e, this.config = t, this.clickedOnLeft = !1, this.pluginType = this.config.type || "text", this.parentTag = this.pluginType === "marker" ? "MARK" : "FONT", this.hasCustomPicker = this.config.customPicker || !1, this.color = X(
       D(this.config.defaultColor, this.pluginType)
     ), this.picker = null, this.icon = null, this.button = null, this.iconClasses = {
       base: this.api.styles.inlineToolButton,

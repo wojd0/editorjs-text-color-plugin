@@ -11,7 +11,7 @@ export default {
     copyPublicDir: false,
     lib: {
       entry: path.resolve(__dirname, "src", "index.js"),
-      name: "TextColor",
+      name: "ColorPlugin",
       fileName: "bundle",
     },
     rollupOptions: {

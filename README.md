@@ -2,7 +2,7 @@
 
 # Editor.js Text Color Tool
 
-A simple tool [Demo](https://flaming-cl.github.io/editorPlugin) to color text-fragments for [Editor.js](https://editorjs.io).  
+A simple tool [Demo](https://flaming-cl.github.io/editorPlugin) to color text-fragments for [Editor.js](https://editorjs.io).
 
 ![readme](https://user-images.githubusercontent.com/51183663/213845281-99c84d59-230f-4f15-a8d5-b345b112f1b4.png)
 
@@ -12,22 +12,16 @@ A simple tool [Demo](https://flaming-cl.github.io/editorPlugin) to color text-fr
 
 Get the package
 
-```shell
-
-package.json
-
+```json
 "dependencies": {
-...
-"editorjs-text-color-plugin": "git+https://github.com/dariox64/editorjs-text-color-plugin.git",
-...
+  "@wojd0/editorjs-text-color-plugin": "^1.0.0",
 }
-
 ```
 
 Import the plugin
 
 ```javascript
-import ColorPlugin from 'editorjs-text-color-plugin';
+import ColorPlugin from "@wojd0/editorjs-text-color-plugin";
 ```
 
 ## Usage
@@ -37,7 +31,7 @@ Add the plugin to Editor.js: editing the `tools` property in your Editor.js conf
 ```javascript
 var editor = EditorJS({
   ...
-  
+
   tools: {
     ...
 
@@ -46,9 +40,9 @@ var editor = EditorJS({
       config: {
          colorCollections: ['#EC7878','#9C27B0','#673AB7','#3F51B5','#0070FF','#03A9F4','#00BCD4','#4CAF50','#8BC34A','#CDDC39', '#FFF'],
          defaultColor: '#FF1300',
-         type: 'text', 
-         customPicker: true // add a button to allow selecting any colour  
-      }     
+         type: 'text',
+         customPicker: true // add a button to allow selecting any colour
+      }
     },
     Marker: {
       class: ColorPlugin, // if load from CDN, please try: window.ColorPlugin
@@ -56,23 +50,23 @@ var editor = EditorJS({
          defaultColor: '#FFBF00',
          type: 'marker',
          icon: `<svg fill="#000000" height="200px" width="200px" version="1.1" id="Icons" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M17.6,6L6.9,16.7c-0.2,0.2-0.3,0.4-0.3,0.6L6,23.9c0,0.3,0.1,0.6,0.3,0.8C6.5,24.9,6.7,25,7,25c0,0,0.1,0,0.1,0l6.6-0.6 c0.2,0,0.5-0.1,0.6-0.3L25,13.4L17.6,6z"></path> <path d="M26.4,12l1.4-1.4c1.2-1.2,1.1-3.1-0.1-4.3l-3-3c-0.6-0.6-1.3-0.9-2.2-0.9c-0.8,0-1.6,0.3-2.2,0.9L19,4.6L26.4,12z"></path> </g> <g> <path d="M28,29H4c-0.6,0-1-0.4-1-1s0.4-1,1-1h24c0.6,0,1,0.4,1,1S28.6,29,28,29z"></path> </g> </g></svg>`
-        }       
+        }
     },
   },
-  
+
   ...
 });
 ```
 
 ## Config Params (optional)
 
-| Field            | Type      | Description                                                                                                                            |
-|------------------|-----------|----------------------------------------------------------------------------------------------------------------------------------------|
-| colorCollections | `array`   | Colors available in the palette.   CSS variables, for example var(--main-text-color), are supported                                    |
-| defaultColor     | `string`  | Default color (if you do not set up a default color, it will be the first color of your color collections).   CSS variables supported. |
-| type             | `string`  | Set the plugin as a marker or a text color tool. It will be set as a text color tool as default.                                       |
-| customPicker     | `boolean` | Turn on a random color picker in the palette, defaults to `false`.                                                                     |
-| icon             | `string`  | SVG string to replace default button icons.                                                                                            |
+| Field            | Type      | Description                                                                                                                          |
+| ---------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| colorCollections | `array`   | Colors available in the palette. CSS variables, for example var(--main-text-color), are supported                                    |
+| defaultColor     | `string`  | Default color (if you do not set up a default color, it will be the first color of your color collections). CSS variables supported. |
+| type             | `string`  | Set the plugin as a marker or a text color tool. It will be set as a text color tool as default.                                     |
+| customPicker     | `boolean` | Turn on a random color picker in the palette, defaults to `false`.                                                                   |
+| icon             | `string`  | SVG string to replace default button icons.                                                                                          |
 
 ## Output data
 
@@ -86,9 +80,11 @@ Colored text will be wrapped with a `color` tag with an `color-plugin` class.
     },
 }
 ```
-                                                                                                      
+
 ## Credits
-UI Built Based on https://github.com/XboxYan/xy-ui by XboxYan  
+
+UI Built Based on https://github.com/XboxYan/xy-ui by XboxYan
 
 ## License
+
 [MIT](https://github.com/flaming-cl/editorjs-text-color-plugin/blob/master/LICENSE)

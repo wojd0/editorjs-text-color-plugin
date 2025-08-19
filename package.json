@@ -1,6 +1,6 @@
 {
   "name": "@wojd0/editorjs-text-color-plugin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Text Color Tool for Editor.js",
   "main": "./dist/bundle.umd.js",
   "module": "./dist/bundle.mjs",
@@ -13,9 +13,9 @@
     "url": "git+https://github.com/wojd0/editorjs-text-color-plugin.git"
   },
   "keywords": [
-    "['editor'",
-    "'editorjs'",
-    "'text color picker']"
+    "editor",
+    "editorjs",
+    "text color picker"
   ],
   "author": "flaming-cl",
   "license": "MIT",

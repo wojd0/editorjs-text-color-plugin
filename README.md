@@ -18,7 +18,13 @@ Get the package
 }
 ```
 
-Import the plugin
+### Install via CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@wojd0/editorjs-text-color-plugin"></script>
+```
+
+### Import the plugin
 
 ```javascript
 import ColorPlugin from "@wojd0/editorjs-text-color-plugin";
@@ -76,7 +82,7 @@ Colored text will be wrapped with a `color` tag with an `color-plugin` class.
 {
     "type" : "text",
     "data" : {
-        "text" : "<font color="#00bcd4">Color</font><span style="background-color: rgb(236, 120, 120);"><font color="#ffffff">Plugin</font></span>."
+        "text" : "<font color=\"#00bcd4\">Color</font><span style=\"background-color: rgb(236, 120, 120);\"><font color=\"#ffffff\">Plugin</font></span>."
     },
 }
 ```
